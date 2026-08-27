@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard KPI Mensal | CNseg</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="marca"><div class="marca-icone">K</div><div><strong>KPI de TI</strong><small>Indicadores mensais</small></div></div>
+    <nav>
+      <a class="menu-item ativo" href="#resumo">▦ <span>Resumo mensal</span></a>
+      <a class="menu-item" href="#evolucao">⌁ <span>Evolução</span></a>
+      <a class="menu-item" href="#detalhamento">▤ <span>Detalhamento</span></a>
+    </nav>
+    <div class="usuario"><div class="avatar">GP</div><div><strong>Gabriel Porto</strong><small>Infraestrutura de TI</small></div></div>
+  </aside>
+
+  <main class="pagina">
+    <header class="cabecalho" id="resumo">
+      <div><span class="sobretitulo">GESTÃO DE TECNOLOGIA</span><h1>KPI Mensal de TI</h1><p>Visão consolidada dos principais números do ambiente.</p></div>
+      <div class="controles">
+        <label class="seletor"><span>Competência</span><select id="competencia"></select></label>
+        <label class="importar"><input type="file" id="arquivoExcel" accept=".xlsx,.xls"><span>↑ Importar planilha</span></label>
+      </div>
+    </header>
+
+    <section class="aviso-fonte" id="avisoFonte">
+      <div><strong id="nomeArquivo">KPI CNseg.xlsx</strong><span id="statusArquivo">Dados iniciais carregados</span></div>
+      <p>Selecione uma planilha atualizada para substituir os números automaticamente.</p>
+    </section>
+
+    <section class="cards" id="cardsKpi" aria-label="Indicadores do mês"></section>
+
+    <section class="grade-graficos" id="evolucao">
+      <article class="painel painel-grafico">
+        <div class="painel-topo">
+          <div><h2>Evolução mensal</h2><p id="descricaoGrafico">Histórico do indicador selecionado</p></div>
+          <select id="indicadorGrafico" aria-label="Indicador do gráfico"></select>
+        </div>
+        <div class="grafico-container"><canvas id="graficoEvolucao"></canvas></div>
+      </article>
+
+      <article class="painel atualizacao">
+        <div class="painel-topo"><div><h2>Atualização dos dados</h2><p>Última competência disponível em cada aba</p></div></div>
+        <div id="listaAtualizacao" class="lista-atualizacao"></div>
+      </article>
+    </section>
+
+    <section class="painel detalhes" id="detalhamento">
+      <div class="painel-topo detalhes-topo">
+        <div><h2>Detalhamento da competência</h2><p>Composição dos indicadores conforme as abas da planilha</p></div>
+        <button id="exportarCsv" class="botao-secundario">↓ Exportar resumo</button>
+      </div>
+      <div class="tabela-responsiva">
+        <table>
+          <thead><tr><th>Indicador</th><th>Competência utilizada</th><th>Total</th><th>Composição</th><th>Situação</th></tr></thead>
+          <tbody id="corpoTabela"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer><span>Dashboard de acompanhamento mensal da Infraestrutura de TI</span><span id="rodapeStatus">● Base carregada</span></footer>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
